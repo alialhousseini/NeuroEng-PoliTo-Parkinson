@@ -1,0 +1,24 @@
+This Python code is designed to train a deep learning model for image classification on two different datasets: spiral and wave. It uses TensorFlow and Keras libraries to perform various tasks like data preprocessing, data augmentation, and model training.
+
+The first few lines of the code import the necessary libraries like numpy, pandas, os, matplotlib, and tensorflow. These libraries are used for various tasks throughout the code. The code also imports specific functions like to_categorical from keras.utils, load_img, and img_to_array from keras.preprocessing.image, and various model architectures from keras.applications.
+
+Next, the code defines the file paths for the training and testing datasets for both spiral and wave datasets. It then reads the filenames of the training datasets using os.listdir and stores them in a list called Name. It also prints the number of images in the training set.
+
+The next few lines define two dictionaries: normal_mapping and reverse_mapping. These dictionaries map the filename to a numerical index and vice versa. The mapper function is defined to return the filename given the numerical index.
+
+The code then reads the image data from the spiral training set and appends each image along with its corresponding label to a list called dataset_sp. The image data is read using load_img and img_to_array functions and is normalized by dividing each pixel value by 255.0. The code also does the same for the test dataset.
+
+The same is done for the wave dataset as well, and the image data is stored in dataset_wv and testset_wv lists.
+
+The next few lines convert the labels into one-hot encoding using the to_categorical function and split the data into training and testing sets using the train_test_split function from sklearn.
+
+The next few lines define an ImageDataGenerator object that is used for data augmentation. This object defines various transformations like horizontal and vertical flips, random rotations, zooming, and shifting of the images. These transformations are applied to the training dataset during the training process to improve the performance of the model.
+
+The code then defines four different pre-trained models: DenseNet201, MobileNetV2, ResNet50, and VGG16. These models are trained on the ImageNet dataset and can be used as a starting point for transfer learning. The models are set to not be trainable for now.
+
+Next, two different models are defined using the pre-trained models: model1 and model2. These models use the DenseNet201 and MobileNetV2 pre-trained models, respectively, as their base model. They add a dense layer with 128 neurons and a softmax output layer with two neurons for the classification task.
+
+The code then compiles both models using the categorical cross-entropy loss function and the Adam optimizer. It then fits both models on the training dataset using the fit_generator function. The validation set is set to 20% of the training data, and the models are trained for 10 epochs.
+
+Finally, the code evaluates both models on the test datasets and prints out the classification report, log loss, and accuracy score.
+
